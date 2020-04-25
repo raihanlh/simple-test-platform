@@ -3,18 +3,18 @@
     <div class="answer-sheet">
       <div class="sheet-head">
         <div class="subject">
-          <h3>TPS - Penalaran Umum</h3>
+          <h3>{{ test.subject }}</h3>
         </div>
         <div class="sheet-nav">
-          <button class="btn btn-left">a</button>
+          <button v-on:click="decreaseNumber()" class="btn btn-left">a</button>
           <div class="number">
-            <h3>2</h3>
+            <h3>{{ currentNumber }}</h3>
           </div>
-          <button class="btn btn-right">b</button>
+          <button v-on:click="increaseNumber()" class="btn btn-right">b</button>
         </div>
       </div>
       <div class="question">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam quam nam veritatis fugiat reiciendis, nostrum minima temporibus assumenda inventore quasi iste laborum velit voluptas unde sed architecto alias! Autem, necessitatibus.</p>
+        <p>{{ test.questions[currentNumber-1].readings }}</p>
       </div>
       <div
         class="directive"
@@ -66,12 +66,51 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "TestPlatform",
   data() {
     return {
-      answer: ""
+      answer: "",
+      test: {
+        id: 0,
+        subject: "",
+        questions: [
+          {
+            number: 1,
+            readings: "",
+            directive: "",
+            choices: [
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ]
+      },
+      currentNumber: 1
     };
+  },
+  async mounted() {
+    await axios.get("http://localhost:3000/tests/1").then(response => {
+      this.test = response.data;
+      console.log(response.data);
+    });
+  },
+  methods: {
+    increaseNumber() {
+        if (this.currentNumber + 1 <= this.test.questions.length) {
+            this.currentNumber += 1;
+        }
+    },
+    decreaseNumber() {
+      if (this.currentNumber - 1 <= this.test.questions.length) {
+            this.currentNumber -= 1;
+        }
+    }
   }
 };
 </script>
@@ -124,15 +163,18 @@ $hoverBg: lightgrey;
         }
       }
     }
+
     .question {
       @include box();
       margin: 1rem;
       border: black 1px solid;
       box-shadow: none;
     }
+
     .directive {
       padding: 1rem;
     }
+
     .answer-selection {
       padding: 1rem;
     }
