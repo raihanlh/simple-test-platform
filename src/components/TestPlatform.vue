@@ -16,42 +16,40 @@
       <div class="question">
         <p>{{ test.questions[currentNumber-1].readings }}</p>
       </div>
-      <div
-        class="directive"
-      >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo ex, inventore illum beatae sint sunt a reiciendis dolorem nihil itaque, harum deserunt veniam fuga ullam suscipit est quam maiores. Eius!</div>
+      <div class="directive">{{ test.questions[currentNumber-1].directive }}</div>
       <div class="answer-selection">
         <label>
-          <input type="radio" value="A" v-model="answer" />
+          <input type="radio" value="A" v-model="answers[currentNumber-1]" />
           <span>A</span>
-          <span>Option A</span>
+          <span>{{ test.questions[currentNumber-1].choices[0] }}</span>
         </label>
         <br />
         <label>
-          <input type="radio" value="B" v-model="answer" />
+          <input type="radio" value="B" v-model="answers[currentNumber-1]" />
           <span>B</span>
-          <span>Option B</span>
+          <span>{{ test.questions[currentNumber-1].choices[1]}}</span>
         </label>
         <br />
         <label>
-          <input type="radio" value="C" v-model="answer" />
+          <input type="radio" value="C" v-model="answers[currentNumber-1]" />
           <span>C</span>
-          <span>Option C</span>
+          <span>{{ test.questions[currentNumber-1].choices[2]}}</span>
         </label>
         <br />
         <label>
-          <input type="radio" value="D" v-model="answer" />
+          <input type="radio" value="D" v-model="answers[currentNumber-1]" />
           <span>D</span>
-          <span>Option D</span>
+          <span>{{ test.questions[currentNumber-1].choices[3]}}</span>
         </label>
         <br />
         <label>
-          <input type="radio" value="E" v-model="answer" />
+          <input type="radio" value="E" v-model="answers[currentNumber-1]" />
           <span>E</span>
-          <span>Option E</span>
+          <span>{{ test.questions[currentNumber-1].choices[4]}}</span>
         </label>
         <br />
         <br />
-        <span>Picked: {{ answer }}</span>
+        <span>Picked: {{ answers[currentNumber-1] }}</span>
       </div>
     </div>
     <div class="time-review">
@@ -60,6 +58,16 @@
       </div>
       <div class="review">
         <h3>Question Answered</h3>
+        <div>
+          <span v-for="n in numberOfQuestion" :key="n">
+            <button
+              v-if="answers[n-1] != null"
+              v-on:click="gotoNumber(n)"
+              class="btn-answered"
+            >{{ n }}</button>
+            <button v-else v-on:click="gotoNumber(n)" class="btn-unanswered">{{ n }}</button>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -73,6 +81,7 @@ export default {
   data() {
     return {
       answer: "",
+      answers: [],
       test: {
         id: 0,
         subject: "",
@@ -81,35 +90,34 @@ export default {
             number: 1,
             readings: "",
             directive: "",
-            choices: [
-              "",
-              "",
-              "",
-              "",
-              ""
-            ]
+            choices: ["", "", "", "", ""]
           }
         ]
       },
-      currentNumber: 1
+      currentNumber: 1,
+      numberOfQuestion: 0
     };
   },
   async mounted() {
     await axios.get("http://localhost:3000/tests/1").then(response => {
       this.test = response.data;
+      this.numberOfQuestion = response.data.questions.length;
       console.log(response.data);
     });
   },
   methods: {
     increaseNumber() {
-        if (this.currentNumber + 1 <= this.test.questions.length) {
-            this.currentNumber += 1;
-        }
+      if (this.currentNumber + 1 <= this.test.questions.length) {
+        this.currentNumber += 1;
+      }
     },
     decreaseNumber() {
-      if (this.currentNumber - 1 <= this.test.questions.length) {
-            this.currentNumber -= 1;
-        }
+      if (this.currentNumber - 1 > 0) {
+        this.currentNumber -= 1;
+      }
+    },
+    gotoNumber(num) {
+      this.currentNumber = num;
     }
   }
 };
@@ -124,6 +132,13 @@ $hoverBg: lightgrey;
   border-radius: 1em;
   padding: 1.5em;
   box-shadow: 0 0 4px 1px #888888;
+}
+
+@mixin btn-circle {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
 }
 
 .container {
@@ -180,10 +195,8 @@ $hoverBg: lightgrey;
     }
 
     input[type="radio"] {
-      width: 30px;
-      height: 30px;
-      border-radius: 15px;
-      border: 2px solid #1fbed6;
+      @include btn-circle();
+      border: 1px solid black;
       background-color: white;
       -webkit-appearance: none; /*to disable the default appearance of radio button*/
       -moz-appearance: none;
@@ -195,6 +208,7 @@ $hoverBg: lightgrey;
 
       &:checked {
         background-color: #1fbed6;
+        border: 1px solid #1fbed6;
       }
 
       &:checked ~ span:first-of-type {
@@ -207,7 +221,7 @@ $hoverBg: lightgrey;
         position: relative;
         left: -24px;
         font-size: 15px;
-        color: #1fbed6;
+        color: black;
       }
 
       span {
@@ -233,6 +247,26 @@ $hoverBg: lightgrey;
       align-content: left;
     }
   }
+}
+
+button {
+  cursor: pointer;
+}
+
+button.btn-answered {
+  @include btn-circle();
+  background-color: #1fbed6;
+  border: 1px solid #1fbed6;
+  margin: 0.3rem;
+  color: white;
+}
+
+button.btn-unanswered {
+  @include btn-circle();
+  background-color: white;
+  border: 1px solid black;
+  margin: 0.3rem;
+  color: black;
 }
 
 @media (max-width: 640px) {
