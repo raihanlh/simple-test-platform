@@ -1,0 +1,15 @@
+{
+    "tests": [
+        {
+            "id": 1,
+            "subject": "TPS - Penalaran Umum",
+            "questions": [
+                {
+                    "number": 1,
+                    "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam quam nam veritatis fugiat reiciendis, nostrum minima temporibus assumenda inventore quasi iste laborum velit voluptas unde sed architecto alias! Autem, necessitatibus.",
+                    "directive": "Jawaban dari pertanyaan di atas adalah..."
+                }
+            ]
+        }
+    ]
+}

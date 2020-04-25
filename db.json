@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "id": 1,
+      "subject": "TPS - Penalaran Umum",
+      "questions": [
+        {
+          "number": 1,
+          "readings": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam quam nam veritatis fugiat reiciendis, nostrum minima temporibus assumenda inventore quasi iste laborum velit voluptas unde sed architecto alias! Autem, necessitatibus.",
+          "directive": "Jawaban dari pertanyaan di atas adalah..."
+        },
+        {
+          "number": 2,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ..."
+        }
+      ]
+    }
+  ]
+}
