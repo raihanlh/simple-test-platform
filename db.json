@@ -9,11 +9,11 @@
           "readings": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam quam nam veritatis fugiat reiciendis, nostrum minima temporibus assumenda inventore quasi iste laborum velit voluptas unde sed architecto alias! Autem, necessitatibus.",
           "directive": "Jawaban dari pertanyaan di atas adalah...",
           "choices": [
-            "Option A",
-            "Option B",
-            "Option C",
-            "Option D",
-            "Option E"
+            "Option 1-A",
+            "Option 1-B",
+            "Option 1-C",
+            "Option 1-D",
+            "Option 1-E"
           ]
         },
         {
@@ -21,11 +21,11 @@
           "readings": "Diketahui x adalah 1 dan y adalah 2.",
           "directive": "x + y = ...",
           "choices": [
-            "Option A",
-            "Option B",
-            "Option C",
-            "Option D",
-            "Option E"
+            "Option 2-A",
+            "Option 2-B",
+            "Option 2-C",
+            "Option 2-D",
+            "Option 2-E"
           ]
         }
       ]
