@@ -7,12 +7,26 @@
         {
           "number": 1,
           "readings": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam quam nam veritatis fugiat reiciendis, nostrum minima temporibus assumenda inventore quasi iste laborum velit voluptas unde sed architecto alias! Autem, necessitatibus.",
-          "directive": "Jawaban dari pertanyaan di atas adalah..."
+          "directive": "Jawaban dari pertanyaan di atas adalah...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
         },
         {
           "number": 2,
           "readings": "Diketahui x adalah 1 dan y adalah 2.",
-          "directive": "x + y = ..."
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
         }
       ]
     }
