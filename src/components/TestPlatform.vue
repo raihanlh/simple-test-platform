@@ -51,6 +51,9 @@
         <br />
         <span>Picked: {{ answers[currentNumber-1] }}</span>
       </div>
+      <div class="sheet-foot">
+        <button v-on:click="removeAnswer()" class="btn-delete">Hapus Jawaban</button>
+      </div>
     </div>
     <div class="time-review">
       <div class="time">
@@ -60,8 +63,9 @@
         <h3>Question Answered</h3>
         <div>
           <span v-for="n in numberOfQuestion" :key="n">
+            <button v-if="n == currentNumber" v-on:click="gotoNumber(n)" class="btn-current">{{ n }}</button>
             <button
-              v-if="answers[n-1] != null"
+              v-else-if="answers[n-1] != null"
               v-on:click="gotoNumber(n)"
               class="btn-answered"
             >{{ n }}</button>
@@ -81,7 +85,7 @@ export default {
   data() {
     return {
       answer: "",
-      answers: [],
+      answers: {},
       test: {
         id: 0,
         subject: "",
@@ -102,7 +106,6 @@ export default {
     await axios.get("http://localhost:3000/tests/1").then(response => {
       this.test = response.data;
       this.numberOfQuestion = response.data.questions.length;
-      console.log(response.data);
     });
   },
   methods: {
@@ -118,20 +121,30 @@ export default {
     },
     gotoNumber(num) {
       this.currentNumber = num;
+    },
+    removeAnswer() {
+      this.answers[this.currentNumber - 1] = null;
+      this.answer = null;
     }
   }
 };
 </script>
 
 <style lang="scss">
-$primaryBg: white;
-$hoverBg: lightgrey;
+$primaryColor: white;
+$secondaryColor: #1fbed6;
+$tertiaryColor: rgb(245, 107, 2);
+$hoverBg: rgb(227, 227, 227);
 
 @mixin box {
-  background: $primaryBg;
+  background-color: $primaryColor;
   border-radius: 1em;
   padding: 1.5em;
   box-shadow: 0 0 4px 1px #888888;
+}
+
+@mixin box-hover {
+  background-color: $hoverBg;
 }
 
 @mixin btn-circle {
@@ -168,8 +181,8 @@ $hoverBg: lightgrey;
           border-radius: 50%;
           width: 2rem;
           height: 2rem;
-          color: orange;
-          background: $primaryBg;
+          color: $tertiaryColor;
+          background: $primaryColor;
           cursor: pointer;
           text-decoration: none;
           &:hover {
@@ -201,14 +214,17 @@ $hoverBg: lightgrey;
       -webkit-appearance: none; /*to disable the default appearance of radio button*/
       -moz-appearance: none;
       cursor: pointer;
+      &:hover {
+        @include box-hover();
+      }
 
       &:focus {
         outline-color: transparent;
       }
 
       &:checked {
-        background-color: #1fbed6;
-        border: 1px solid #1fbed6;
+        background-color: $secondaryColor;
+        border: 1px solid $secondaryColor;
       }
 
       &:checked ~ span:first-of-type {
@@ -253,10 +269,18 @@ button {
   cursor: pointer;
 }
 
+button.btn-current {
+  @include btn-circle();
+  background-color: $tertiaryColor;
+  border: 1px solid $tertiaryColor;
+  margin: 0.3rem;
+  color: $primaryColor;
+}
+
 button.btn-answered {
   @include btn-circle();
-  background-color: #1fbed6;
-  border: 1px solid #1fbed6;
+  background-color: $secondaryColor;
+  border: 1px solid $secondaryColor;
   margin: 0.3rem;
   color: white;
 }
@@ -267,11 +291,29 @@ button.btn-unanswered {
   border: 1px solid black;
   margin: 0.3rem;
   color: black;
+  &:hover {
+    @include box-hover();
+  }
+}
+
+button.btn-delete {
+  cursor: pointer;
+  border-radius: 20px;
+  width: 10rem;
+  height: 3rem;
+  background-color: $primaryColor;
+  color: $tertiaryColor;
+  border: 2px solid $tertiaryColor;
+  font-weight: bold;
+  &:hover {
+    @include box-hover();
+  }
 }
 
 @media (max-width: 640px) {
   .container {
     grid-template-columns: 1fr;
+    grid-gap: 1rem;
   }
 }
 </style>
