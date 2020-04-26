@@ -72,6 +72,17 @@
             <button v-else v-on:click="gotoNumber(n)" class="btn-unanswered">{{ n }}</button>
           </span>
         </div>
+        <button class="btn-review" v-on:click="showModal()">Review</button>
+        <Modal
+          v-show="isModalVisible"
+          v-on:close="closeModal"
+          v-bind:ans="answers"
+          v-bind:nums="numberOfQuestion"
+          v-bind:curr="currentNumber"
+        />
+      </div>
+      <div>
+        <button class="btn-finish">Finish</button>
       </div>
     </div>
   </div>
@@ -79,9 +90,13 @@
 
 <script>
 import axios from "axios";
+import Modal from "./Modal";
 
 export default {
   name: "TestPlatform",
+  components: {
+    Modal
+  },
   data() {
     return {
       answer: "",
@@ -99,7 +114,8 @@ export default {
         ]
       },
       currentNumber: 1,
-      numberOfQuestion: 0
+      numberOfQuestion: 0,
+      isModalVisible: false
     };
   },
   async mounted() {
@@ -125,6 +141,12 @@ export default {
     removeAnswer() {
       this.answers[this.currentNumber - 1] = null;
       this.answer = null;
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
     }
   }
 };
@@ -138,8 +160,8 @@ $hoverBg: rgb(227, 227, 227);
 
 @mixin box {
   background-color: $primaryColor;
-  border-radius: 1em;
-  padding: 1.5em;
+  border-radius: 1rem;
+  padding: 1.5rem;
   box-shadow: 0 0 4px 1px #888888;
 }
 
@@ -261,12 +283,17 @@ $hoverBg: rgb(227, 227, 227);
     .review {
       @include box();
       align-content: left;
+      padding-bottom: 0;
     }
   }
 }
 
 button {
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 button.btn-current {
@@ -305,8 +332,40 @@ button.btn-delete {
   color: $tertiaryColor;
   border: 2px solid $tertiaryColor;
   font-weight: bold;
+  margin-left: 1rem;
   &:hover {
     @include box-hover();
+  }
+}
+
+button.btn-review {
+  cursor: pointer;
+  border-radius: 20px;
+  width: 10rem;
+  height: 3rem;
+  background-color: $tertiaryColor;
+  color: $primaryColor;
+  border: 2px solid $tertiaryColor;
+  font-weight: bold;
+  margin-top: 3rem;
+  &:hover {
+    @include box-hover();
+    color: $tertiaryColor;
+  }
+}
+
+button.btn-finish {
+  cursor: pointer;
+  border-radius: 20px;
+  width: 100%;
+  height: 3rem;
+  background-color: $tertiaryColor;
+  color: $primaryColor;
+  border: 2px solid $tertiaryColor;
+  font-weight: bold;
+  &:hover {
+    @include box-hover();
+    color: $tertiaryColor;
   }
 }
 
