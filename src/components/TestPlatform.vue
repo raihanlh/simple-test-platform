@@ -378,6 +378,8 @@ button.btn-delete {
   margin-left: 1rem;
   &:hover {
     @include box-hover();
+    background-color: $tertiaryColor;
+    color: $primaryColor;
   }
 }
 
