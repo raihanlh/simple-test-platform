@@ -130,9 +130,12 @@ export default {
       timerInterval: null
     };
   },
+  props: {
+    test_id: Number
+  },
   async mounted() {
     this.startTimer();
-    await axios.get("http://localhost:3000/tests/1").then(response => {
+    await axios.get(`http://localhost:3000/tests/${this.test_id}`).then(response => {
       this.test = response.data;
       this.numberOfQuestion = response.data.questions.length;
     });

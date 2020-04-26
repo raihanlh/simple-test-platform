@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TestPlatform />
+    <TestPlatform v-bind:test_id="1"/>
   </div>
 </template>
 
