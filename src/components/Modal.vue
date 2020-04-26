@@ -45,7 +45,6 @@ export default {
   methods: {
     close() {
       this.$emit("close");
-      console.log(this.ans);
     }
   },
   props: {
