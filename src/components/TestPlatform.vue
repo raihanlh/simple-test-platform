@@ -56,9 +56,7 @@
       </div>
     </div>
     <div class="time-review">
-      <div class="time">
-        <h1>02:00</h1>
-      </div>
+      <Timer v-bind:time-left="timeLeft" />
       <div class="review">
         <h3>Question Answered</h3>
         <h2>{{ countAnswered() }} of {{ numberOfQuestion }}</h2>
@@ -92,11 +90,13 @@
 <script>
 import axios from "axios";
 import Modal from "./Modal";
+import Timer from "./Timer";
 
 export default {
   name: "TestPlatform",
   components: {
-    Modal
+    Modal,
+    Timer
   },
   data() {
     return {
@@ -116,10 +116,14 @@ export default {
       },
       currentNumber: 1,
       numberOfQuestion: 0,
-      isModalVisible: false
+      isModalVisible: false,
+      timeLimit: 5,
+      timePassed: 0,
+      timerInterval: null,
     };
   },
   async mounted() {
+    this.startTimer();
     await axios.get("http://localhost:3000/tests/1").then(response => {
       this.test = response.data;
       this.numberOfQuestion = response.data.questions.length;
@@ -152,10 +156,27 @@ export default {
     countAnswered() {
       let ans = this.answers;
       let arrAnswers = Object.keys(ans).map(function(key) {
-        return [ans[key]]
+        return [ans[key]];
       });
       let notNullArrAnswers = arrAnswers.filter(String);
       return notNullArrAnswers.length;
+    },
+    startTimer() {
+      this.timerInterval = setInterval(() => (this.timePassed += 1), 1000);
+    }
+  },
+  computed: {
+    formattedTimeLeft() {
+      const timeLeft = this.timeLeft;
+      const minutes = Math.floor(timeLeft / 60);
+      let seconds = timeLeft % 60;
+      if (seconds < 10) {
+        seconds = `0${seconds}`;
+      }
+      return `${minutes}:${seconds}`;
+    },
+    timeLeft() {
+      return (this.timeLimit - this.timePassed > 0) ? this.timeLimit - this.timePassed : 0;
     }
   }
 };
