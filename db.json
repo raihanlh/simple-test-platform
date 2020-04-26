@@ -27,6 +27,102 @@
             "Option 2-D",
             "Option 2-E"
           ]
+        },
+        {
+          "number": 3,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
+        },
+        {
+          "number": 4,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
+        },
+        {
+          "number": 5,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
+        },
+        {
+          "number": 6,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
+        },
+        {
+          "number": 7,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
+        },
+        {
+          "number": 8,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
+        },
+        {
+          "number": 9,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
+        },
+        {
+          "number": 10,
+          "readings": "Diketahui x adalah 1 dan y adalah 2.",
+          "directive": "x + y = ...",
+          "choices": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D",
+            "Option E"
+          ]
         }
       ]
     }
