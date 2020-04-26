@@ -404,5 +404,9 @@ button.btn-finish {
     grid-template-columns: 1fr;
     grid-gap: 1rem;
   }
+
+  button.btn-review {
+      margin-bottom: 2rem;
+  }
 }
 </style>

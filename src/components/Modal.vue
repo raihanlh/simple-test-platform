@@ -130,4 +130,10 @@ header#modalTitle {
 button.btn-answered button.btn-unanswered button.btn-current {
     cursor: none;
 }
+
+@media (max-width: 640px) {
+  .modal-body {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 </style>
