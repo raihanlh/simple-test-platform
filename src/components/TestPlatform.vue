@@ -117,7 +117,7 @@ export default {
       currentNumber: 1,
       numberOfQuestion: 0,
       isModalVisible: false,
-      timeLimit: 5,
+      timeLimit: 3600,
       timePassed: 0,
       timerInterval: null,
     };
