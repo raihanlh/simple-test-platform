@@ -6,11 +6,19 @@
           <h3>{{ test.subject }}</h3>
         </div>
         <div class="sheet-nav">
-          <button v-on:click="decreaseNumber()" class="btn btn-left">a</button>
+          <button v-on:click="decreaseNumber()" :disabled="currentNumber <= 1" class="btn btn-left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
           <div class="number">
             <h3>{{ currentNumber }}</h3>
           </div>
-          <button v-on:click="increaseNumber()" class="btn btn-right">b</button>
+          <button
+            v-on:click="increaseNumber()"
+            :disabled="currentNumber >= numberOfQuestion"
+            class="btn btn-right"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </div>
       <div class="question">
@@ -119,7 +127,7 @@ export default {
       isModalVisible: false,
       timeLimit: 3600,
       timePassed: 0,
-      timerInterval: null,
+      timerInterval: null
     };
   },
   async mounted() {
@@ -176,7 +184,9 @@ export default {
       return `${minutes}:${seconds}`;
     },
     timeLeft() {
-      return (this.timeLimit - this.timePassed > 0) ? this.timeLimit - this.timePassed : 0;
+      return this.timeLimit - this.timePassed > 0
+        ? this.timeLimit - this.timePassed
+        : 0;
     }
   }
 };
@@ -239,6 +249,14 @@ $hoverBg: rgb(227, 227, 227);
           text-decoration: none;
           &:hover {
             background: $hoverBg;
+          }
+
+          &:disabled,
+          &[disabled] {
+            background: #cccccc;
+            color: #666666;
+            cursor: default;
+            pointer-events: none;
           }
         }
       }
@@ -318,14 +336,6 @@ $hoverBg: rgb(227, 227, 227);
   }
 }
 
-button {
-  cursor: pointer;
-
-  &:focus {
-    outline: none;
-  }
-}
-
 button.btn-current {
   @include btn-circle();
   background-color: $tertiaryColor;
@@ -399,6 +409,14 @@ button.btn-finish {
   }
 }
 
+button {
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 @media (max-width: 640px) {
   .container {
     grid-template-columns: 1fr;
@@ -406,7 +424,7 @@ button.btn-finish {
   }
 
   button.btn-review {
-      margin-bottom: 2rem;
+    margin-bottom: 2rem;
   }
 }
 </style>
