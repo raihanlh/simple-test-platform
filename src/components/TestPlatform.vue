@@ -61,6 +61,7 @@
       </div>
       <div class="review">
         <h3>Question Answered</h3>
+        <h2>{{ countAnswered() }} of {{ numberOfQuestion }}</h2>
         <div>
           <span v-for="n in numberOfQuestion" :key="n">
             <button v-if="n == currentNumber" v-on:click="gotoNumber(n)" class="btn-current">{{ n }}</button>
@@ -147,6 +148,14 @@ export default {
     },
     closeModal() {
       this.isModalVisible = false;
+    },
+    countAnswered() {
+      let ans = this.answers;
+      let arrAnswers = Object.keys(ans).map(function(key) {
+        return [ans[key]]
+      });
+      let notNullArrAnswers = arrAnswers.filter(String);
+      return notNullArrAnswers.length;
     }
   }
 };
@@ -272,7 +281,7 @@ $hoverBg: rgb(227, 227, 227);
 
   .time-review {
     display: grid;
-    grid-template-rows: 150px 300px;
+    grid-template-rows: 150px auto;
     grid-row-gap: 1em;
 
     .time {
