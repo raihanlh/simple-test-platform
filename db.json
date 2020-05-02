@@ -143,6 +143,60 @@
         "8": null,
         "9": null
       }
+    },
+    {
+      "id": 2,
+      "testId": 1,
+      "numberOfQuestion": 10,
+      "userId": 1,
+      "answers": {
+        "0": null,
+        "1": "A",
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    {
+      "id": 3,
+      "testId": 1,
+      "numberOfQuestion": 10,
+      "userId": 1,
+      "answers": {
+        "0": null,
+        "1": "B",
+        "2": "C",
+        "3": "D",
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    {
+      "id": 4,
+      "testId": 1,
+      "numberOfQuestion": 10,
+      "userId": 1,
+      "answers": {
+        "1": "C",
+        "2": "C",
+        "3": "C",
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null,
+        "10": null
+      }
     }
   ],
   "correctAnswers": {

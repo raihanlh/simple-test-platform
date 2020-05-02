@@ -17,17 +17,17 @@
           <div v-for="n in nums" :key="n" class="answer-list">
             <div v-if="n == curr" class="answer">
               <button class="btn-current">{{ n }}</button>
-              <p v-if="ans[n-1] != null">{{ ans[n-1] }}</p>
+              <p v-if="ans[n] != null">{{ ans[n] }}</p>
               <p v-else>-</p>
             </div>
-            <div v-else-if="ans[n-1] != null" class="answer">
+            <div v-else-if="ans[n] != null" class="answer">
               <button class="btn-answered">{{ n }}</button>
-              <p v-if="ans[n-1] != null">{{ ans[n-1] }}</p>
+              <p v-if="ans[n] != null">{{ ans[n] }}</p>
               <p v-else>-</p>
             </div>
             <div v-else class="answer">
               <button class="btn-unanswered">{{ n }}</button>
-              <p v-if="ans[n-1] != null">{{ ans[n-1] }}</p>
+              <p v-if="ans[n] != null">{{ ans[n] }}</p>
               <p v-else>-</p>
             </div>
           </div>

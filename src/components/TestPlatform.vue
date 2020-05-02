@@ -27,37 +27,37 @@
       <div class="directive">{{ test.questions[currentNumber-1].directive }}</div>
       <div class="answer-selection">
         <label>
-          <input type="radio" value="A" v-model="answers[currentNumber-1]" />
+          <input type="radio" value="A" v-model="answers[currentNumber]" />
           <span>A</span>
           <span>{{ test.questions[currentNumber-1].choices[0] }}</span>
         </label>
         <br />
         <label>
-          <input type="radio" value="B" v-model="answers[currentNumber-1]" />
+          <input type="radio" value="B" v-model="answers[currentNumber]" />
           <span>B</span>
           <span>{{ test.questions[currentNumber-1].choices[1]}}</span>
         </label>
         <br />
         <label>
-          <input type="radio" value="C" v-model="answers[currentNumber-1]" />
+          <input type="radio" value="C" v-model="answers[currentNumber]" />
           <span>C</span>
           <span>{{ test.questions[currentNumber-1].choices[2]}}</span>
         </label>
         <br />
         <label>
-          <input type="radio" value="D" v-model="answers[currentNumber-1]" />
+          <input type="radio" value="D" v-model="answers[currentNumber]" />
           <span>D</span>
           <span>{{ test.questions[currentNumber-1].choices[3]}}</span>
         </label>
         <br />
         <label>
-          <input type="radio" value="E" v-model="answers[currentNumber-1]" />
+          <input type="radio" value="E" v-model="answers[currentNumber]" />
           <span>E</span>
           <span>{{ test.questions[currentNumber-1].choices[4]}}</span>
         </label>
         <br />
         <br />
-        <span>Picked: {{ answers[currentNumber-1] }}</span>
+        <span>Picked: {{ answers[currentNumber] }}</span>
       </div>
       <div class="sheet-foot">
         <button v-on:click="removeAnswer()" class="btn-delete">Hapus Jawaban</button>
@@ -72,7 +72,7 @@
           <span v-for="n in numberOfQuestion" :key="n">
             <button v-if="n == currentNumber" v-on:click="gotoNumber(n)" class="btn-current">{{ n }}</button>
             <button
-              v-else-if="answers[n-1] != null"
+              v-else-if="answers[n] != null"
               v-on:click="gotoNumber(n)"
               class="btn-answered"
             >{{ n }}</button>
@@ -108,6 +108,7 @@ export default {
   },
   data() {
     return {
+      userId: 1,
       answers: {},
       test: {
         id: 0,
@@ -183,6 +184,7 @@ export default {
       let arrAnswers = Object.keys(ans).map(function(key) {
         return [ans[key]];
       });
+
       let notNullArrAnswers = arrAnswers.filter(String);
       return notNullArrAnswers.length;
     },
@@ -199,7 +201,7 @@ export default {
       let newId = fetched.length + 1;
 
       // Add null to unanswered questions
-      for (let i = 0; i < this.numberOfQuestion; i++) {
+      for (let i = 1; i <= this.numberOfQuestion; i++) {
         if (!this.answers[i]) {
           this.answers[i] = null;
         }
