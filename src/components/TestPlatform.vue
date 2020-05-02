@@ -89,7 +89,7 @@
         />
       </div>
       <div>
-        <button class="btn-finish">Finish</button>
+        <button class="btn-finish" v-on:click="submitAnswer()">Finish</button>
       </div>
     </div>
   </div>
@@ -183,6 +183,26 @@ export default {
         () => (this.time.timePassed += 1),
         1000
       );
+    },
+    async submitAnswer() {
+      // Get new Id
+      let fetched = await axios.get('http://localhost:3000/userAnswers/');
+      let newId = fetched.length + 1;
+
+      // Add null to unanswered questions
+      for (let i = 0; i < this.numberOfQuestion; i++) {
+        if (!this.answers[i]) {
+          this.answers[i] = null;
+        }
+      }
+
+      const params = {
+        id: newId,
+        answers: this.answers
+      };
+      
+      let res = await axios.post('http://localhost:3000/userAnswers/', params);
+      console.log(res.data);
     }
   },
   computed: {
