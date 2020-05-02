@@ -182,15 +182,6 @@ export default {
     }
   },
   computed: {
-    formattedTimeLeft() {
-      const timeLeft = this.timeLeft;
-      const minutes = Math.floor(timeLeft / 60);
-      let seconds = timeLeft % 60;
-      if (seconds < 10) {
-        seconds = `0${seconds}`;
-      }
-      return `${minutes}:${seconds}`;
-    },
     timeLeft() {
       return this.timeLimit - this.timePassed > 0
         ? this.timeLimit - this.timePassed
