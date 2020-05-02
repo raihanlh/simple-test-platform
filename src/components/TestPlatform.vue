@@ -133,14 +133,19 @@ export default {
   props: {
     test_id: Number
   },
-  async mounted() {
+  mounted() {
     this.startTimer();
-    await axios.get(`http://localhost:3000/tests/${this.test_id}`).then(response => {
-      this.test = response.data;
-      this.numberOfQuestion = response.data.questions.length;
-    });
+    this.fetchTest();
   },
   methods: {
+    async fetchTest() {
+      await axios
+        .get(`http://localhost:3000/tests/${this.test_id}`)
+        .then(response => {
+          this.test = response.data;
+          this.numberOfQuestion = response.data.questions.length;
+        });
+    },
     increaseNumber() {
       if (this.currentNumber + 1 <= this.test.questions.length) {
         this.currentNumber += 1;
@@ -196,5 +201,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './../assets/css/TestPlatform.scss';
+@import "./../assets/css/TestPlatform.scss";
 </style>
