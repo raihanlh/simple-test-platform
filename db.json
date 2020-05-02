@@ -130,61 +130,9 @@
   "userAnswers": [
     {
       "id": 1,
-      "answers": {
-        "0": "B",
-        "1": "C"
-      }
-    },
-    {
-      "id": 2,
-      "answers": {
-        "0": "C",
-        "1": "E"
-      }
-    },
-    {
-      "id": 3,
-      "answers": {
-        "0": "C",
-        "1": "E"
-      }
-    },
-    {
-      "id": 4,
-      "answers": {
-        "0": null,
-        "1": null,
-        "2": null,
-        "3": null,
-        "4": null,
-        "5": null,
-        "6": null,
-        "7": null,
-        "8": null,
-        "9": null
-      }
-    },
-    {
-      "id": 5,
       "testId": 1,
       "answers": {
-        "0": null,
-        "1": null,
-        "2": null,
-        "3": null,
-        "4": null,
-        "5": null,
-        "6": null,
-        "7": null,
-        "8": null,
-        "9": null
-      }
-    },
-    {
-      "id": 6,
-      "testId": 1,
-      "answers": {
-        "0": null,
+        "0": "A",
         "1": null,
         "2": null,
         "3": null,
@@ -196,5 +144,20 @@
         "9": null
       }
     }
-  ]
+  ],
+  "correctAnswers": {
+    "id": 1,
+    "answers": {
+      "0": "A",
+      "1": "A",
+      "2": "A",
+      "3": "A",
+      "4": "A",
+      "5": "A",
+      "6": "A",
+      "7": "A",
+      "8": "A",
+      "9": "A"
+    }
+  }
 }

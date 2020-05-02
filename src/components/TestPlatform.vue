@@ -132,7 +132,7 @@ export default {
     };
   },
   props: {
-    test_id: Number
+    testId: Number
   },
   mounted() {
     this.startTimer();
@@ -142,7 +142,7 @@ export default {
     async fetchTest() {
       // Fetch test questions from backend API
       await axios
-        .get(`http://localhost:3000/tests/${this.test_id}`)
+        .get(`http://localhost:3000/tests/${this.testId}`)
         .then(response => {
           this.test = response.data;
           this.numberOfQuestion = response.data.questions.length;
@@ -207,7 +207,9 @@ export default {
 
       const params = {
         id: newId,
-        testId: this.test_id,
+        testId: this.testId,
+        numberOfQuestion: this.numberOfQuestion,
+        userId: this.userId,
         answers: this.answers
       };
 
