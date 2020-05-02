@@ -140,6 +140,7 @@ export default {
   },
   methods: {
     async fetchTest() {
+      // Fetch test questions from backend API
       await axios
         .get(`http://localhost:3000/tests/${this.test_id}`)
         .then(response => {
@@ -148,29 +149,36 @@ export default {
         });
     },
     increaseNumber() {
+      // Add currentNumber when button is clicked
       if (this.currentNumber + 1 <= this.test.questions.length) {
         this.currentNumber += 1;
       }
     },
     decreaseNumber() {
+      // Subtract currentNumber when button is clicked
       if (this.currentNumber - 1 > 0) {
         this.currentNumber -= 1;
       }
     },
     gotoNumber(num) {
+      // Set currentNumber to num
       this.currentNumber = num;
     },
     removeAnswer() {
+      // Set answer to null
       this.answers[this.currentNumber - 1] = null;
       this.answer = null;
     },
     showModal() {
+      // Set isModalVisible to true when button is clicked
       this.isModalVisible = true;
     },
     closeModal() {
+      // Set isModalVisible to false when button is clicked
       this.isModalVisible = false;
     },
     countAnswered() {
+      // Count not null answers
       let ans = this.answers;
       let arrAnswers = Object.keys(ans).map(function(key) {
         return [ans[key]];
@@ -179,6 +187,7 @@ export default {
       return notNullArrAnswers.length;
     },
     startTimer() {
+      // Start the timer
       this.time.timerInterval = setInterval(
         () => (this.time.timePassed += 1),
         1000
@@ -198,14 +207,16 @@ export default {
 
       const params = {
         id: newId,
+        testId: this.test_id,
         answers: this.answers
       };
-      
+
       let res = await axios.post('http://localhost:3000/userAnswers/', params);
       console.log(res.data);
     }
   },
   computed: {
+    // Calculate time left
     timeLeft() {
       const { timeLimit, timePassed } = this.time;
       return timeLimit - timePassed > 0 ? timeLimit - timePassed : 0;
