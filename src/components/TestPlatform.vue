@@ -80,7 +80,7 @@
           </span>
         </div>
         <button class="btn-review" v-on:click="showModal()">Review</button>
-        <Modal
+        <ReviewModal
           v-show="isModalVisible"
           v-on:close="closeModal"
           v-bind:ans="answers"
@@ -97,13 +97,13 @@
 
 <script>
 import axios from "axios";
-import Modal from "./Modal";
+import ReviewModal from "./ReviewModal";
 import Timer from "./Timer";
 
 export default {
   name: "TestPlatform",
   components: {
-    Modal,
+    ReviewModal,
     Timer
   },
   data() {

@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: "Modal",
+  name: "ReviewModal",
   methods: {
     close() {
       this.$emit("close");
