@@ -108,7 +108,6 @@ export default {
   },
   data() {
     return {
-      answer: "",
       answers: {},
       test: {
         id: 0,
@@ -125,9 +124,11 @@ export default {
       currentNumber: 1,
       numberOfQuestion: 0,
       isModalVisible: false,
-      timeLimit: 3600,
-      timePassed: 0,
-      timerInterval: null
+      time: {
+        timeLimit: 3600,
+        timePassed: 0,
+        timerInterval: null
+      }
     };
   },
   props: {
@@ -178,14 +179,16 @@ export default {
       return notNullArrAnswers.length;
     },
     startTimer() {
-      this.timerInterval = setInterval(() => (this.timePassed += 1), 1000);
+      this.time.timerInterval = setInterval(
+        () => (this.time.timePassed += 1),
+        1000
+      );
     }
   },
   computed: {
     timeLeft() {
-      return this.timeLimit - this.timePassed > 0
-        ? this.timeLimit - this.timePassed
-        : 0;
+      const { timeLimit, timePassed } = this.time;
+      return timeLimit - timePassed > 0 ? timeLimit - timePassed : 0;
     }
   }
 };
