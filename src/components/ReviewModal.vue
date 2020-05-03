@@ -10,7 +10,7 @@
         <header class="modal-header" id="modalTitle">
           <slot name="header">
             <h3>Review</h3>
-            <button type="button" class="btn-close" @click="close" aria-label="Close modal">x</button>
+            <button type="button" class="btn-close" v-on:click="close" aria-label="Close modal">x</button>
           </slot>
         </header>
         <section class="modal-body" id="modalDescription">
