@@ -13,7 +13,9 @@
         <h1 class="score">{{ score }} / 100</h1>
         <div class="result">
           <button v-on:click="close">Back to Home</button>
-          <button>Pembahasan</button>
+          <router-link :to="{ path: 'pembahasan/' + testId }">
+            <button>Pembahasan</button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -133,12 +135,12 @@ export default {
 }
 
 @media (max-width: 768px) {
-    .modal {
-        width: 80%;
-    }
-    .result {
-        display: grid;
-        grid-template-rows: 1fr;
-    }
+  .modal {
+    width: 80%;
+  }
+  .result {
+    display: grid;
+    grid-template-rows: 1fr;
+  }
 }
 </style>

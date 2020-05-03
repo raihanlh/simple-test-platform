@@ -1,18 +1,13 @@
 <template>
   <div id="app">
-    <TestPlatform v-bind:testId="1"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import TestPlatform from './components/TestPlatform'
-
 export default {
-  name: 'App',
-  components: {
-    TestPlatform
-  }
-}
+  name: "App"
+};
 </script>
 
 <style lang="scss">
