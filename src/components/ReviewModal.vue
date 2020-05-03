@@ -32,8 +32,6 @@
             </div>
           </div>
         </section>
-        <footer class="modal-footer">
-        </footer>
       </div>
     </div>
   </transition>
