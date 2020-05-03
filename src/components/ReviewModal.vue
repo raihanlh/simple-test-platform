@@ -3,14 +3,11 @@
     <div class="modal-backdrop">
       <div
         class="modal"
-        role="dialog"
-        aria-labelledby="modalTitle"
-        aria-describedby="modalDescription"
       >
         <header class="modal-header" id="modalTitle">
           <slot name="header">
             <h3>Review</h3>
-            <button type="button" class="btn-close" v-on:click="close" aria-label="Close modal">x</button>
+            <button type="button" class="btn-close" v-on:click="close">x</button>
           </slot>
         </header>
         <section class="modal-body" id="modalDescription">
@@ -54,5 +51,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './../assets/css/Modal.scss';
+@import "./../assets/css/Modal.scss";
 </style>

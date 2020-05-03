@@ -233,21 +233,96 @@
         "9": null,
         "10": null
       }
+    },
+    {
+      "id": 7,
+      "testId": 1,
+      "numberOfQuestion": 10,
+      "userId": 1,
+      "answers": {
+        "1": "A",
+        "2": "A",
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null,
+        "10": null
+      }
+    },
+    {
+      "id": 8,
+      "testId": 1,
+      "numberOfQuestion": 10,
+      "userId": 1,
+      "answers": {
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null,
+        "10": null
+      }
+    },
+    {
+      "id": 9,
+      "testId": 1,
+      "numberOfQuestion": 10,
+      "userId": 1,
+      "answers": {
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null,
+        "10": null
+      }
+    },
+    {
+      "id": 10,
+      "testId": 1,
+      "numberOfQuestion": 10,
+      "userId": 1,
+      "answers": {
+        "1": "A",
+        "2": null,
+        "3": "A",
+        "4": null,
+        "5": "C",
+        "6": null,
+        "7": "B",
+        "8": "A",
+        "9": null,
+        "10": null
+      }
     }
   ],
-  "correctAnswers": {
-    "id": 1,
-    "answers": {
-      "0": "A",
-      "1": "A",
-      "2": "A",
-      "3": "A",
-      "4": "A",
-      "5": "A",
-      "6": "A",
-      "7": "A",
-      "8": "A",
-      "9": "A"
+  "correctAnswers": [
+    {
+      "id": 1,
+      "numberOfQuestion": 10,
+      "answers": {
+        "1": "A",
+        "2": "A",
+        "3": "A",
+        "4": "A",
+        "5": "A",
+        "6": "A",
+        "7": "A",
+        "8": "A",
+        "9": "A",
+        "10": "A"
+      }
     }
-  }
+  ]
 }

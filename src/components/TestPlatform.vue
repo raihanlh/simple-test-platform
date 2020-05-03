@@ -151,37 +151,41 @@ export default {
   mounted() {
     this.startTimer();
     this.fetchTest();
-    window.addEventListener("keyup", event => {
-      if (event.keyCode === 37) {
-        this.decreaseNumber();
-      } else if (event.keyCode === 39) {
-        this.increaseNumber();
-      } else if (event.keyCode === 46) {
-        this.removeAnswer();
-      } else if (event.keyCode === 65) {
-        this.answers[this.currentNumber] = 'A';
-      } else if (event.keyCode === 66) {
-        this.answers[this.currentNumber] = 'B';
-      } else if (event.keyCode === 67) {
-        this.answers[this.currentNumber] = 'C';
-      } else if (event.keyCode === 68) {
-        this.answers[this.currentNumber] = 'D';
-      } else if (event.keyCode === 69) {
-        this.answers[this.currentNumber] = 'E';
-      } else if (event.keyCode === 82) {
-        if (!this.isModalVisible.review) {
-          this.showModal('review');
-        }
-      } else if (event.keyCode === 13) {
-        if (!this.isModalVisible.result) {
-          this.showModal('result');
-        }
-      } else if (event.keyCode === 27) {
-        this.closeModal();
-      }
-    });
+    this.addKeyEvents();
   },
   methods: {
+    addKeyEvents() {
+      // Add keyboard functions
+      window.addEventListener("keyup", event => {
+        if (event.keyCode === 37) {
+          this.decreaseNumber();
+        } else if (event.keyCode === 39) {
+          this.increaseNumber();
+        } else if (event.keyCode === 46) {
+          this.removeAnswer();
+        } else if (event.keyCode === 65) {
+          this.answers[this.currentNumber] = "A";
+        } else if (event.keyCode === 66) {
+          this.answers[this.currentNumber] = "B";
+        } else if (event.keyCode === 67) {
+          this.answers[this.currentNumber] = "C";
+        } else if (event.keyCode === 68) {
+          this.answers[this.currentNumber] = "D";
+        } else if (event.keyCode === 69) {
+          this.answers[this.currentNumber] = "E";
+        } else if (event.keyCode === 82) {
+          if (!this.isModalVisible.review) {
+            this.showModal("review");
+          }
+        } else if (event.keyCode === 13) {
+          if (!this.isModalVisible.result) {
+            this.showModal("result");
+          }
+        } else if (event.keyCode === 27) {
+          this.closeModal();
+        }
+      });
+    },
     async fetchTest() {
       // Fetch test questions from backend API
       await axios
