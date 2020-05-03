@@ -40,7 +40,7 @@ $hoverBg: rgb(227, 227, 227);
         display: flex;
         align-items: center;
         .number {
-          padding: 0 1rem;
+          padding: 0 0.5rem;
         }
 
         button {
@@ -119,6 +119,7 @@ $hoverBg: rgb(227, 227, 227);
         position: relative;
         top: -10px;
         cursor: pointer;
+        line-height: 2;
       }
     }
   }
