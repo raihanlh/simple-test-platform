@@ -79,9 +79,9 @@
             <button v-else v-on:click="gotoNumber(n)" class="btn-unanswered">{{ n }}</button>
           </span>
         </div>
-        <button class="btn-review" v-on:click="showModal()">Review</button>
+        <button class="btn-review" v-on:click="showModal('review')">Review</button>
         <ReviewModal
-          v-show="isModalVisible"
+          v-show="isModalVisible.review"
           v-on:close="closeModal"
           v-bind:ans="answers"
           v-bind:nums="numberOfQuestion"
@@ -89,7 +89,15 @@
         />
       </div>
       <div>
-        <button class="btn-finish" v-on:click="submitAnswer()">Finish</button>
+        <button class="btn-finish" v-on:click="showModal('result')">Finish</button>
+        <ResultModal
+          v-show="isModalVisible.result"
+          v-on:close="closeModal"
+          v-bind:answers="answers"
+          v-bind:testId="testId"
+          v-bind:userId="userId"
+          v-bind:numberOfQuestion="numberOfQuestion"
+        />
       </div>
     </div>
   </div>
@@ -98,12 +106,14 @@
 <script>
 import axios from "axios";
 import ReviewModal from "./ReviewModal";
+import ResultModal from "./ResultModal";
 import Timer from "./Timer";
 
 export default {
   name: "TestPlatform",
   components: {
     ReviewModal,
+    ResultModal,
     Timer
   },
   data() {
@@ -124,7 +134,10 @@ export default {
       },
       currentNumber: 1,
       numberOfQuestion: 0,
-      isModalVisible: false,
+      isModalVisible: {
+        review: false,
+        result: false
+      },
       time: {
         timeLimit: 3600,
         timePassed: 0,
@@ -138,6 +151,35 @@ export default {
   mounted() {
     this.startTimer();
     this.fetchTest();
+    window.addEventListener("keyup", event => {
+      if (event.keyCode === 37) {
+        this.decreaseNumber();
+      } else if (event.keyCode === 39) {
+        this.increaseNumber();
+      } else if (event.keyCode === 46) {
+        this.removeAnswer();
+      } else if (event.keyCode === 65) {
+        this.answers[this.currentNumber] = 'A';
+      } else if (event.keyCode === 66) {
+        this.answers[this.currentNumber] = 'B';
+      } else if (event.keyCode === 67) {
+        this.answers[this.currentNumber] = 'C';
+      } else if (event.keyCode === 68) {
+        this.answers[this.currentNumber] = 'D';
+      } else if (event.keyCode === 69) {
+        this.answers[this.currentNumber] = 'E';
+      } else if (event.keyCode === 82) {
+        if (!this.isModalVisible.review) {
+          this.showModal('review');
+        }
+      } else if (event.keyCode === 13) {
+        if (!this.isModalVisible.result) {
+          this.showModal('result');
+        }
+      } else if (event.keyCode === 27) {
+        this.closeModal();
+      }
+    });
   },
   methods: {
     async fetchTest() {
@@ -167,16 +209,21 @@ export default {
     },
     removeAnswer() {
       // Set answer to null
-      this.answers[this.currentNumber - 1] = null;
+      this.answers[this.currentNumber] = null;
       this.answer = null;
     },
-    showModal() {
+    showModal(modal) {
       // Set isModalVisible to true when button is clicked
-      this.isModalVisible = true;
+      if (modal == "review") {
+        this.isModalVisible.review = true;
+      } else if (modal == "result") {
+        this.isModalVisible.result = true;
+      }
     },
     closeModal() {
       // Set isModalVisible to false when button is clicked
-      this.isModalVisible = false;
+      this.isModalVisible.review = false;
+      this.isModalVisible.result = false;
     },
     countAnswered() {
       // Count not null answers
@@ -197,7 +244,7 @@ export default {
     },
     async submitAnswer() {
       // Get new Id
-      let fetched = await axios.get('http://localhost:3000/userAnswers/');
+      let fetched = await axios.get("http://localhost:3000/userAnswers/");
       let newId = fetched.length + 1;
 
       // Add null to unanswered questions
@@ -215,7 +262,7 @@ export default {
         answers: this.answers
       };
 
-      let res = await axios.post('http://localhost:3000/userAnswers/', params);
+      let res = await axios.post("http://localhost:3000/userAnswers/", params);
       console.log(res.data);
     }
   },
