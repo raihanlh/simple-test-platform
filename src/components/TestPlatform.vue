@@ -118,6 +118,7 @@ export default {
   },
   data() {
     return {
+      url: process.env.VUE_APP_URL,
       userId: 1,
       answers: {},
       test: {
@@ -189,7 +190,7 @@ export default {
     async fetchTest() {
       // Fetch test questions from backend API
       await axios
-        .get(`http://localhost:3000/tests/${this.testId}`)
+        .get(`${this.url}/tests/${this.testId}`)
         .then(response => {
           this.test = response.data;
           this.numberOfQuestion = response.data.questions.length;
@@ -248,7 +249,7 @@ export default {
     },
     async submitAnswer() {
       // Get new Id
-      let fetched = await axios.get("http://localhost:3000/userAnswers/");
+      let fetched = await axios.get(`${this.url}/userAnswers/`);
       let newId = fetched.length + 1;
 
       // Add null to unanswered questions
@@ -266,7 +267,7 @@ export default {
         answers: this.answers
       };
 
-      let res = await axios.post("http://localhost:3000/userAnswers/", params);
+      let res = await axios.post(`${this.url}/userAnswers/`, params);
       console.log(res.data);
     }
   },

@@ -30,7 +30,8 @@ export default {
     return {
       isInConfirmation: true,
       isInResult: false,
-      score: 0
+      score: 0,
+      url: process.env.VUE_APP_URL
     };
   },
   methods: {
@@ -39,7 +40,9 @@ export default {
     },
     async submitAnswer() {
       // Get new Id
-      let fetched = await axios.get("http://localhost:3000/userAnswers/");
+      console.log('test');
+      console.log(this.url);
+      let fetched = await axios.get(`${this.url}/userAnswers/`);
       let newId = fetched.data.length + 1;
 
       // Add null to unanswered questions
@@ -57,7 +60,7 @@ export default {
         answers: this.answers
       };
 
-      let res = await axios.post("http://localhost:3000/userAnswers/", params);
+      let res = await axios.post(`${this.url}/userAnswers/`, params);
 
       console.log(res.data);
 
@@ -68,7 +71,7 @@ export default {
     },
     async calculateScore() {
       const res = await axios.get(
-        `http://localhost:3000/correctAnswers/${this.testId}`
+        `${this.url}/correctAnswers/${this.testId}`
       );
 
       let correctAnswer = 0;
